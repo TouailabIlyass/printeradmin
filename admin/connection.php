@@ -31,7 +31,7 @@ private static $dbname = 'printer';
 			self::connect(self::$dbname);
 			return self::$con;
 		}
-		return null;
+		return self::$con;
 	}
 	public static function closeConnection()
 	{

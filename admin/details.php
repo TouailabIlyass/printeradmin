@@ -7,7 +7,7 @@ if(!isset($_SESSION['user']))
 
 require_once('controller.php');
 $status = '-1';
-$app = $_GET['app'] ?? -1;
+$app = $_POST['app'] ?? -1;
 
 if($app != -1)
     $status = AdminController::setOrderApprouve($app);
@@ -110,7 +110,7 @@ if($app != -1)
                                     class="img-circle"><span class="text-white font-medium">Admin</span></a>
                         </li>
                         <li>
-                            <a href="" class="btn btn-danger">Log Out</a>
+                        <a href="login-action.php?action=logout" class="btn btn-danger">Log Out</a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -222,7 +222,6 @@ if($app != -1)
                     <div class="col-lg-8 col-xlg-9 col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <form class="form-horizontal form-material">
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">Full Name</label>
                                         <div class="col-md-12 border-bottom p-0">
@@ -279,17 +278,21 @@ if($app != -1)
                                            <p></p>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 p-0">
+                                    <div class="col-md-10 p-0">
+                                    <div class="row">
+                                    <div class="col-3 col-sm-3">
+                                   
                                         <a href="./dashboard.php" class="btn btn btn-rounded btn-default btn-outline mb-2 mb-md-0 m-r-5">
                                             <i class="ti-close text-danger m-r-5"></i> Reject
                                         </a>
-                                        
+                                        </div>
+                                        <div class="col-3 col-sm-3">
+                                       
                                         <?php 
                                         echo "<form action='details.php' method='POST'><input type='hidden' name='item' value='{$item}'> <input type='hidden' name='app' value='{$obj["id"]}'> <button type='submit' value='Details'  class='btn-rounded btn btn-default btn-outline'> <i class='ti-check text-success m-r-5'></i>Approve</button></form>"; ?>
-                                           
-
+                                        </div> 
+                                        </div>
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>

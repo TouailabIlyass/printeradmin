@@ -106,7 +106,7 @@ if(!isset($_SESSION['user']))
                                     class="img-circle"><span class="text-white font-medium">Admin</span></a>
                         </li>
                         <li>
-                            <a href="" class="btn btn-danger">Log Out</a>
+                        <a href="login-action.php?action=logout" class="btn btn-danger">Log Out</a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->

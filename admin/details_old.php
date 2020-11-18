@@ -9,7 +9,7 @@ if(!isset($_SESSION['user']))
 
 require_once('controller.php');
 $status = '-1';
-$app = $_GET['app'] ?? -1;
+$app = $_POST['app'] ?? -1;
 
 if($app != -1)
     $status = AdminController::setOrderApprouve($app);
@@ -112,7 +112,7 @@ if($app != -1)
                                     class="img-circle"><span class="text-white font-medium">Admin</span></a>
                         </li>
                         <li>
-                            <a href="" class="btn btn-danger">Log Out</a>
+                        <a href="login-action.php?action=logout" class="btn btn-danger">Log Out</a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -203,7 +203,7 @@ if($app != -1)
                 <!-- Row -->
                 <div class="row">
                     <?php
-                        $item = $_GET['item'] ?? -1;
+                        $item = $_POST['item'] ?? -1;
                         if($item == -1) die();
                         $obj = unserialize($item);
                     ?>
