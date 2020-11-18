@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(!isset($_SESSION['user']))
+{
+    header('Location: index.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -199,7 +208,7 @@
                                     <?php
                                         foreach($data['items'] as $item){
                                             $obj = serialize($item);
-                                            echo "<tr><td>{$item['email']}</td><td>{$item['phone']}</td><td>{$item['firstname']} {$item['lastname']}</td><td>{$item['address']}</td><td>{$item['postal_code']}</td><td>{$item['width']}</td><td>{$item['height']}</td><td>{$item['date']}</td><td><a href='details.php?item=$obj' class='btn btn-primary'>Details</a></td>    </tr>";
+                                            echo "<tr><td>{$item['email']}</td><td>{$item['phone']}</td><td>{$item['firstname']} {$item['lastname']}</td><td>{$item['address']}</td><td>{$item['postal_code']}</td><td>{$item['width']}</td><td>{$item['height']}</td><td>{$item['date']}</td><td><form action='details.php' method='POST'><input type='hidden' name='item' value='$obj'> <input type='submit' value='Details' class='btn btn-primary'></form></td>    </tr>";
                                         }
                                     ?>
                                     

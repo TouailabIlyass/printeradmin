@@ -1,6 +1,12 @@
 <?php
 
 
+session_start();
+if(!isset($_SESSION['user']))
+{
+    header('Location: index.php');
+}
+
 require_once('controller.php');
 $status = '-1';
 $app = $_GET['app'] ?? -1;

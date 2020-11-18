@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(!isset($_SESSION['user']))
+{
+    header('Location: index.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 

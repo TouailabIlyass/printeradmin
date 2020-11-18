@@ -1,5 +1,9 @@
 <?php
-
+session_start();
+if(!isset($_SESSION['user']))
+{
+    header('Location: index.php');
+}
 
 require_once('controller.php');
 $status = '-1';
@@ -197,7 +201,7 @@ if($app != -1)
                 <!-- Row -->
                 <div class="row">
                     <?php
-                        $item = $_GET['item'] ?? -1;
+                        $item = $_POST['item'] ?? -1;
                         if($item == -1) die();
                         $obj = unserialize($item);
                     ?>
@@ -281,9 +285,8 @@ if($app != -1)
                                         </a>
                                         
                                         <?php 
-                                        echo "<a href='./details.php?app={$obj["id"]}&item={$item}' class='btn-rounded btn btn-default btn-outline'>"; ?>
-                                            <i class="ti-check text-success m-r-5"></i>Approve
-                                        </a>
+                                        echo "<form action='details.php' method='POST'><input type='hidden' name='item' value='{$item}'> <input type='hidden' name='app' value='{$obj["id"]}'> <button type='submit' value='Details'  class='btn-rounded btn btn-default btn-outline'> <i class='ti-check text-success m-r-5'></i>Approve</button></form>"; ?>
+                                           
 
                                     </div>
                                 </form>
