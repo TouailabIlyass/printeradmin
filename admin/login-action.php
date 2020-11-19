@@ -19,7 +19,6 @@ if(isset($_POST['login']) && $_POST['login'] === 'Login')
     }
 }
 $data = AdminController::login($post);
-echo $data;
 if($data === true)
 {
     $_SESSION['user'] = $post['username'];

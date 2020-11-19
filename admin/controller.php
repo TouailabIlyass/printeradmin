@@ -13,12 +13,7 @@ class AdminController{
 	{
 		try{
 			if(self::$con == null)
-			{	self::$con = ConnectionBD::getConnection();
-				$myfile = fopen("log.txt", "a");
-				fwrite($myfile, 'stat');
-				fclose($myfile);
-			}	
-			
+				self::$con = ConnectionBD::getConnection();
 			$data = [];
 			
 			//getting all new orders count
@@ -56,12 +51,7 @@ class AdminController{
 	{
 		try{
 			if(self::$con == null)
-			{	self::$con = ConnectionBD::getConnection();
-				$myfile = fopen("log.txt", "a");
-				fwrite($myfile, 'new orders');
-				fclose($myfile);
-			}
-			
+				self::$con = ConnectionBD::getConnection();
 			$data = [];
 			$stmt = self::$con->prepare("SELECT * FROM orders where status is null");
 			$stmt->execute();
@@ -81,12 +71,7 @@ class AdminController{
 	{
 		try{
 			if(self::$con == null)
-			{	self::$con = ConnectionBD::getConnection();
-				$myfile = fopen("log.txt", "a");
-				fwrite($myfile, 'hist');
-				fclose($myfile);
-			}
-			
+				self::$con = ConnectionBD::getConnection();
 			$data = [];
 			$stmt = self::$con->prepare("SELECT * FROM orders where status is not null");
 			$stmt->execute();
@@ -143,12 +128,8 @@ class AdminController{
 			$stmt->execute([$post['username'], $post['username'], $post['password']]);
 			$result = $stmt->fetch();
 			if(($result['username'] === $post['username'] || $result['email'] === $post['username'])){
-				fwrite($myfile, 'true');
-				fclose($myfile);
 				return true;
 			}
-			fwrite($myfile, 'false');
-			fclose($myfile);
 			return false;
 		}catch(Exception $e)
 		{

@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 class ConnectionBD{
 
 private static $con = null;
@@ -23,7 +20,6 @@ private static $dbname = 'printer';
 		catch(PDOException $e){
 			die($e->getMessage());
 		}
-
 	}
 	public static function getConnection(){
 		if(self::$con == null)
