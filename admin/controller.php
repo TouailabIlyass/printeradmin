@@ -7,7 +7,6 @@ class AdminController{
 
 	private static $con = null;
 
-
 	//getting statistics about the orders
 	public static function getStatistics()
 	{
@@ -121,7 +120,6 @@ class AdminController{
 	public static function login($post)
 	{
 		try{
-			$myfile = fopen("log.txt", "a");
 			if(self::$con == null)
 				self::$con = ConnectionBD::getConnection();
 			$stmt = self::$con->prepare("select * from users where (email=? or username=?) and LOWER(password)=?");
@@ -138,7 +136,10 @@ class AdminController{
 		return false;
 	}
 
-
+	public static function close()
+	{	self::$con = null;
+		ConnectionBD::closeConnection();
+	}
 
 
 }

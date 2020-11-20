@@ -1,15 +1,16 @@
 <?php
 
+require_once 'configs.php';
+
 class ConnectionBD{
 
 private static $con = null;
-private static $dbname = 'printer';
 
-	public static function connect($dbname){
+	public static function connect(){
 
 		try{
 
-			self::$con=new PDO("mysql:host=localhost;dbname=$dbname;charset=utf8",'root',''
+			self::$con=new PDO(MYSQL_DSN, MYSQL_USERNAME, MYSQL_PASSWORD
 			,[   
 			     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 			     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -24,14 +25,15 @@ private static $dbname = 'printer';
 	public static function getConnection(){
 		if(self::$con == null)
 		{
-			self::connect(self::$dbname);
+			self::connect();
 			return self::$con;
 		}
 		return self::$con;
 	}
 	public static function closeConnection()
-	{
-	  unset(self::$con);
+	{ 	if(self::$con == null) return;
+		self::$con->query('KILL CONNECTION_ID()');
+		self::$con = null;
 	}
 
 
